@@ -67,9 +67,6 @@ class ControllerUsager extends controller {
 
         $checkUsername = $user->checkUsername($_POST['username']);
 
-        // print_r($_POST["Privilege_id"]);
-        // die();
-
         if($checkUsername == "valid"){
             $_POST['password'];
 
