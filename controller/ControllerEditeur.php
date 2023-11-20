@@ -7,7 +7,6 @@ RequirePage::library('Validation');
 
 class ControllerEditeur extends Controller {
     public function index(){
-
         $editeur = new Editeur;
         $select = $editeur->select();
         return Twig::render('editeur/editeur-index.php', ['editeurs'=>$select]);
@@ -23,7 +22,10 @@ class ControllerEditeur extends Controller {
     }
 
     public function store(){
-
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à create si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('editeur/create');
+        }
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->max(50)->min(2)->required();
@@ -40,8 +42,6 @@ class ControllerEditeur extends Controller {
         $editeur = new Editeur;
         $insert = $editeur->insert($_POST);
         RequirePage::url('editeur/show/'.$insert);
-
-        RequirePage::url('editeur');
     }
 
 
@@ -58,7 +58,6 @@ class ControllerEditeur extends Controller {
     }
 
     public function edit($id = null){
-
         if (isset($id) && $id != null) {
             if ($_SESSION['privilege'] == 1) {
                 $editeur = new Editeur;

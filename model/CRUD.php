@@ -48,7 +48,7 @@ abstract class CRUD extends PDO {
         if($stmt->execute()){
             return true;
         }else{
-            RequirePage::url('home/error/delete');;
+            RequirePage::url('home/error/delete');
         }
     }
 

@@ -2,6 +2,7 @@
 
 class ControllerLang extends Controller {
     public function index(){
+        
     }
 
     public function change($id){

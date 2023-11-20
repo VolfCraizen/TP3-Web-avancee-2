@@ -11,7 +11,6 @@ class ControllerAuteur extends Controller {
         $auteur = new Auteur;
         $select = $auteur->select();
         return Twig::render('auteur/auteur-index.php', ['auteurs'=>$select]);
-
     }
 
     public function create(){
@@ -23,6 +22,10 @@ class ControllerAuteur extends Controller {
     }
 
     public function store(){
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à create si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('auteur/create');
+        }
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->max(50)->required();
@@ -37,12 +40,9 @@ class ControllerAuteur extends Controller {
         $auteur = new Auteur;
         $insert = $auteur->insert($_POST);
         RequirePage::url('auteur/show/'.$insert);
-
-        RequirePage::url('auteur');
     }
 
     public function show($id = null){
-
         if (isset($id) && $id != null) {
             $auteur = new Auteur;
             $selectId = $auteur->selectId($id);
@@ -55,7 +55,6 @@ class ControllerAuteur extends Controller {
     }
 
     public function edit($id = null){
-
         if (isset($id) && $id != null) {
             if ($_SESSION['privilege'] == 1) {
                 $auteur = new Auteur;
@@ -70,13 +69,10 @@ class ControllerAuteur extends Controller {
     }
 
     public function update(){
-
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->max(50)->min(2);
         $validation->name('date_de_naissance')->value($date_de_naissance)->pattern('date_ymd')->required();
-
-
 
         if(!$validation->isSuccess()){
             $errors = $validation->displayErrors();

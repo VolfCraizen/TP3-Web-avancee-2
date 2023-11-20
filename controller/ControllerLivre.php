@@ -44,6 +44,11 @@ class ControllerLivre extends controller {
 
     public function store(){
 
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à create si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('livre/create');
+        }
+
         $validation = new Validation;
         $auteur = new Auteur;
         $selectAuteurs = $auteur->select('nom');

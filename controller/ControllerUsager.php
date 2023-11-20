@@ -49,11 +49,15 @@ class ControllerUsager extends controller {
     }
 
     public function store(){
-       $validation = new Validation;
-       extract($_POST);
-       $validation->name('username')->value($username)->max(50)->required();
-       $validation->name('password')->value($password)->max(20)->min(4)->required();
-       $validation->name('privilege')->value($Privilege_id)->required();
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à create si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('usager/create');
+        }
+        $validation = new Validation;
+        extract($_POST);
+        $validation->name('username')->value($username)->max(50)->required();
+        $validation->name('password')->value($password)->max(20)->min(4)->required();
+        $validation->name('privilege')->value($Privilege_id)->required();
 
        if(!$validation->isSuccess()){
             $errors = $validation->displayErrors();
@@ -63,10 +67,11 @@ class ControllerUsager extends controller {
             exit();
         }
 
-        $user = new Usager;
+        $usager = new Usager;
 
-        $checkUsername = $user->checkUsername($_POST['username']);
+        $checkUsername = $usager->checkUsername($_POST['username']);
 
+        //Vérification si nom d'utilisateur est un doublon avant l'insertion dans la base de données 
         if($checkUsername == "valid"){
             $_POST['password'];
 
@@ -75,14 +80,11 @@ class ControllerUsager extends controller {
             ];
 
             $salt = "g3k6jhg546hg36g3";
-
             $passwordSalt = $_POST['password'].$salt;
-
             $_POST['password'] = password_hash($passwordSalt, PASSWORD_BCRYPT, $option);
-
-            $insert = $user->insert($_POST);
-
+            $insert = $usager->insert($_POST);
             RequirePage::url('usager');
+
         } else {
             $errors = $checkUsername;
             $privilege = new Privilege;
