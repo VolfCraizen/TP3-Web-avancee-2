@@ -19,7 +19,7 @@
             <select name="auteur_id" id="auteur">
                 <option value="">{{lang.select_auteur}}</option>
                 {%for auteur in auteurs %}
-                    <option value="{{ auteur.id }}" {% if auteur.id == livres.Auteur_id %} selected {% endif%}>{{ auteur.nom }}</option>
+                    <option value="{{ auteur.id }}" {% if auteur.id == id_auteur %} selected {% endif%}>{{ auteur.nom }}</option>
                 {% endfor %}
             </select>
 
@@ -27,7 +27,7 @@
             <select name="editeur_id" id="editeur">
                 <option value="">{{lang.select_editeur}}</option>
                 {%for editeur in editeurs %}
-                    <option value="{{ editeur.id }}" {% if editeur.id == livres.Editeur_id %} selected {% endif%}>{{ editeur.nom }}</option>
+                    <option value="{{ editeur.id }}" {% if editeur.id == id_editeur %} selected {% endif%}>{{ editeur.nom }}</option>
                 {% endfor %}
             </select>
             </label>

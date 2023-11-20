@@ -59,7 +59,7 @@ class ControllerLivre extends controller {
 
         if(!$validation->isSuccess()){
             $errors = $validation->displayErrors();
-            return Twig::render('livre/livre-create.php', ['auteurs'=>$selectAuteurs, 'editeurs'=>$selectEditeurs, 'errors'=>$errors, 'livres' => $_POST]);
+            return Twig::render('livre/livre-create.php', ['auteurs'=>$selectAuteurs, 'editeurs'=>$selectEditeurs, 'errors'=>$errors, 'livres' => $_POST, 'id_auteur' => $_POST["auteur_id"], 'id_editeur' => $_POST["editeur_id"]]);
             exit();
         }
 

@@ -38,6 +38,20 @@ class Usager extends CRUD {
             return $errors;
         }
     }
+
+    public function checkUsername($username){
+        $sql = "SELECT * FROM $this->table WHERE username = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute(array($username));
+        $count = $stmt->rowCount();
+
+        if($count === 1){
+            $errors = "<ul><li> Nom d'utilisateur déjà pris. Veuillez en choisir un autre. </li></ul>";
+            return $errors;
+        }else{
+            return "valid";
+        }
+    }
     
 }
 

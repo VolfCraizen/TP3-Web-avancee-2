@@ -56,30 +56,44 @@ class ControllerUsager extends controller {
        $validation->name('privilege')->value($Privilege_id)->required();
 
        if(!$validation->isSuccess()){
-        $errors = $validation->displayErrors();
-        $privilege = new Privilege;
-        $selectPrivileges = $privilege->select('nom');
-        return Twig::render('usager/usager-create.php', ['errors' => $errors, 'privileges' => $selectPrivileges, 'usagers' => $_POST]);
-        exit();
+            $errors = $validation->displayErrors();
+            $privilege = new Privilege;
+            $selectPrivileges = $privilege->select('nom');
+            return Twig::render('usager/usager-create.php', ['errors' => $errors, 'privileges' => $selectPrivileges, 'usagers' => $_POST, 'id_privilege' => $_POST["Privilege_id"]]);
+            exit();
         }
 
         $user = new Usager;
 
-        $_POST['password'];
+        $checkUsername = $user->checkUsername($_POST['username']);
 
-        $option = [
-            'cost' => 10
-        ];
+        // print_r($_POST["Privilege_id"]);
+        // die();
 
-        $salt = "g3k6jhg546hg36g3";
+        if($checkUsername == "valid"){
+            $_POST['password'];
 
-        $passwordSalt = $_POST['password'].$salt;
+            $option = [
+                'cost' => 10
+            ];
 
-        $_POST['password'] = password_hash($passwordSalt, PASSWORD_BCRYPT, $option);
+            $salt = "g3k6jhg546hg36g3";
 
-        $insert = $user->insert($_POST);
+            $passwordSalt = $_POST['password'].$salt;
 
-        RequirePage::url('usager');
+            $_POST['password'] = password_hash($passwordSalt, PASSWORD_BCRYPT, $option);
+
+            $insert = $user->insert($_POST);
+
+            RequirePage::url('usager');
+        } else {
+            $errors = $checkUsername;
+            $privilege = new Privilege;
+            $selectPrivileges = $privilege->select('nom');
+            return Twig::render('usager/usager-create.php', ['errors' => $errors, 'privileges' => $selectPrivileges, 'usagers' => $_POST, 'id_privilege' => $_POST["Privilege_id"]]);
+        }
+
+        
     }
 
     public function destroy(){
