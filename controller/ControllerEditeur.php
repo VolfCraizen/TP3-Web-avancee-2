@@ -24,7 +24,7 @@ class ControllerEditeur extends Controller {
     public function store(){
         //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à l'index si oui pour éviter une erreur php
         if($_POST == null){
-            RequirePage::url('editeur');
+            RequirePage::url('editeur/create');
         }
         $validation = new Validation;
         extract($_POST);
