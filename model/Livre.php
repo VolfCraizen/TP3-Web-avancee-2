@@ -22,7 +22,7 @@ class Livre extends CRUD {
         $count = $stmt->rowCount();
 
         if($count === 1){
-            $errors = "Error : Cette auteur/éditeur à des livres assossiés avec. Veuillez sois les éffacer avant ou les mettre à un autre auteur/éditeur.";
+            $errors = "Error : Cette auteur/éditeur a des livres assossiés avec. Veuillez sois les éffacer avant ou les mettre à un autre auteur/éditeur.";
             return $errors;
         }else{
             return "valid";
