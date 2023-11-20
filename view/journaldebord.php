@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'journal de bord'})}}
+{{include('header.php', {title: lang.journal_de_bord})}}
     <div class="page_name">
         <h2>{{lang.journal_de_bord}}</h2>
     </div>

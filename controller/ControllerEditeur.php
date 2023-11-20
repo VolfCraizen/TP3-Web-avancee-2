@@ -98,8 +98,18 @@ class ControllerEditeur extends Controller {
     public function destroy(){
         if ($_SESSION['privilege'] == 1) {
             $editeur = new Editeur;
-            $destroy = $editeur->delete($_POST["id"]);
+            $livre = new Livre;
+            $foreignTable = "Editeur_id";
+            $checkForeignKey = $livre->checkForeignKey($_POST["id"], $foreignTable);
+            if ($checkForeignKey == "valid") {
+                 $destroy = $editeur->delete($_POST["id"]);
             RequirePage::url('editeur');
+            } else {
+                $errors = $checkForeignKey;
+                echo $errors;
+                exit();
+            }
+           
         } else {
             RequirePage::url('login');
         }

@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Livre show'})}} 
+{{include('header.php', {title: lang.livre_show})}} 
     <section class="sujet_show">
         <h2 class="nomShow">{{ livres.titre }}</h2>
         <p><strong>{{lang.publier}}</strong> {{ livres.date_de_publication }}</p>

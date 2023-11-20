@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Auteur show'})}}
+{{include('header.php', {title: lang.auteur_show})}}
     <section class="sujet_show">
         <h2 class="nomShow">{{ auteurs.nom }}</h2>
         <p><strong>{{lang.naissance}}</strong> {{ auteurs.date_de_naissance }}</p>

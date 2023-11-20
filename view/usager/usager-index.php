@@ -1,4 +1,4 @@
-{{ include ('header.php', {title: 'User list'}) }}
+{{ include ('header.php', {title: lang.usagers}) }}
 
     <div class="page_name">
         <h2>{{lang.liste_usager}}</h2>

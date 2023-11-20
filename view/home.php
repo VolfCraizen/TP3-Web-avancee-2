@@ -1,4 +1,4 @@
-{{ include ('header.php', {title: 'Home'}) }}
+{{ include ('header.php', {title: lang.accueil}) }}
 
     <section class="bienvenue">
         <p>{{lang.bienvenue}}</p>

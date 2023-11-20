@@ -1,6 +1,19 @@
 <?php
 return $lang = array(
 
+    'livre_create' => 'Créer livre',
+    'livre_edit' => 'Modifier livre',
+    'livre_show' => 'Montre Livre',
+    'editeur_create' => 'Créer éditeur',
+    'editeur_edit' => 'Modifier éditeur',
+    'editeur_show' => 'Montre éditeur',
+    'auteur_create' => 'Créer auteur',
+    'auteur_edit' => 'Modifier auteur',
+    'auteur_show' => 'Montre auteur',
+    'accueil' => 'Accueil',
+    'usagers' => 'Usagers',
+    'usager_create' => 'Créer usager',
+
     'journal_de_bord' => 'Journal de bord',
     'url' => 'Url',
     'date' => 'Date et temps',

@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Éditeur edit'})}}
+{{include('header.php', {title: lang.livre_edit})}}
         <div class="container_form">
             <form class="champ_formulaire" action="{{path}}livre/update" method="post">
                 <span class="danger">{{ errors | raw}}</span>

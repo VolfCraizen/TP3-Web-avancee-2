@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Log in'})}}
+{{include('header.php', {title: lang.connexion})}}
 
 <div class="container_form">
         <form class="champ_formulaire" action="{{path}}login/auth" method="post">

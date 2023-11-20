@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Usager create'})}}
+{{include('header.php', {title: lang.usager_create})}}
     <div class="container_form">
         <form class="champ_formulaire" action="./store" method="post">
             <span class="danger">{{ errors | raw}}</span>

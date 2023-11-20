@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Éditeurs'})}}
+{{include('header.php', {title: lang.editeurs})}}
     <div class="page_name">
         <h2>{{lang.liste_editeur}}</h2>
         {% if session.privilege == 1 or session.privilege == 2 %}

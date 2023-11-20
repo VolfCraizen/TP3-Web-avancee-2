@@ -1,4 +1,4 @@
-{{include('header.php', {title: 'Editeurs show'})}}
+{{include('header.php', {title: lang.editeur_show})}}
     <section class="sujet_show">
         <h2 class="nomShow">{{ editeurs.nom }}</h2>
         <p><strong>{{lang.adresse}} : </strong> {{ editeurs.adresse }}</p>

@@ -91,8 +91,18 @@ class ControllerAuteur extends Controller {
     public function destroy(){
         if ($_SESSION['privilege'] == 1) {
             $auteur = new Auteur;
-            $destroy = $auteur->delete($_POST["id"]);
-            RequirePage::url('auteur');
+            $livre = new Livre;
+            $foreignTable = "Auteur_id";
+            $checkForeignKey = $livre->checkForeignKey($_POST["id"], $foreignTable);
+            if ($checkForeignKey == "valid") {
+                $destroy = $auteur->delete($_POST["id"]);
+                RequirePage::url('auteur');
+            } else {
+                $errors = $checkForeignKey;
+                echo $errors;
+                exit();
+            }
+            
         } else {
             RequirePage::url('login');
         }
