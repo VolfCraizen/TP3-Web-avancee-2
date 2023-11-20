@@ -111,6 +111,10 @@ class ControllerLivre extends controller {
     }
 
     public function update(){
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à l'index si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('livre');
+        }
         $validation = new Validation;
         $auteur = new Auteur;
         $selectAuteurs = $auteur->select('nom');

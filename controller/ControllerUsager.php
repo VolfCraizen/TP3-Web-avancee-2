@@ -16,8 +16,6 @@ class ControllerUsager extends controller {
             RequirePage::url('login');
             exit();
         }
-
-       
     }
     
     public function index(){

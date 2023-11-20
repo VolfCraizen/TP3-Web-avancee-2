@@ -22,9 +22,9 @@ class ControllerEditeur extends Controller {
     }
 
     public function store(){
-        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à create si oui pour éviter une erreur php
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à l'index si oui pour éviter une erreur php
         if($_POST == null){
-            RequirePage::url('editeur/create');
+            RequirePage::url('editeur');
         }
         $validation = new Validation;
         extract($_POST);
@@ -74,6 +74,10 @@ class ControllerEditeur extends Controller {
     }
 
     public function update(){
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à edit si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('editeur');
+        }
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->max(50)->required();

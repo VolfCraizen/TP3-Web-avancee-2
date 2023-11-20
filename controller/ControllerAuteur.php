@@ -69,6 +69,10 @@ class ControllerAuteur extends Controller {
     }
 
     public function update(){
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à l'index si oui pour éviter une erreur php
+        if($_POST == null){
+            RequirePage::url('auteur');
+        }
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->max(50)->min(2);
