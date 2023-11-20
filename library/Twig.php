@@ -2,7 +2,6 @@
 
 class Twig{
     static public function render($template, $data = array()){
-        //endroit où on trouver tous nos views
         $loader = new \Twig\Loader\FilesystemLoader('view');
         $twig = new \Twig\Environment($loader, array('auto_reload' => true));
 
@@ -12,6 +11,7 @@ class Twig{
             $guest = true;
         }
 
+        //Gestion de langue
         if ($_SESSION['lang'] == 'en') {
             include('language/EN.php');
         } else if ($_SESSION['lang'] == 'fr'){

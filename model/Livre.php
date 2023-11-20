@@ -14,15 +14,17 @@ class Livre extends CRUD {
         return $prixFinal;
     }
 
+    /**
+     * Vérifie si il y a un livre lié à l'auteur ou éditeur
+     */
     function checkForeignKey($id, $foreignTable){
-
         $sql = "SELECT * FROM $this->table WHERE $foreignTable = $id";
         $stmt = $this->prepare($sql);
         $stmt->execute();
         $count = $stmt->rowCount();
 
         if($count === 1){
-            $errors = "Error : Cette auteur/éditeur à des livres assossiés avec. Veuillez sois les éffacer avant ou les mettre à un autre auteur/éditeur.";
+            $errors = "Error : Cette auteur/éditeur a des livres assossiés avec. Veuillez sois les éffacer avant ou les mettre à un autre auteur/éditeur.";
             return $errors;
         }else{
             return "valid";

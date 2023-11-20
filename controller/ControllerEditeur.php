@@ -74,7 +74,7 @@ class ControllerEditeur extends Controller {
     }
 
     public function update(){
-        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à edit si oui pour éviter une erreur php
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à son index si oui pour éviter une erreur php
         if($_POST == null){
             RequirePage::url('editeur');
         }
@@ -100,6 +100,7 @@ class ControllerEditeur extends Controller {
             $editeur = new Editeur;
             $livre = new Livre;
             $foreignTable = "Editeur_id";
+            //Vérification de si il y a un livre à son nom
             $checkForeignKey = $livre->checkForeignKey($_POST["id"], $foreignTable);
             if ($checkForeignKey == "valid") {
                  $destroy = $editeur->delete($_POST["id"]);

@@ -6,7 +6,9 @@ class Usager extends CRUD {
     protected $primaryKey = 'id';
     protected $fillable = ['username', 'password', 'Privilege_id'];
 
-    //Vérification de l'existence de l'utilisateur et vérification du mot de passe
+    /**
+     * Vérification de l'existence de l'utilisateur et vérification du mot de passe
+     */
     public function checkUser($username, $password){
         $sql = "SELECT * FROM $this->table WHERE username = ?";
         $stmt = $this->prepare($sql);
@@ -14,7 +16,6 @@ class Usager extends CRUD {
         $count = $stmt->rowCount();
 
         if($count === 1){
-
             $salt = "g3k6jhg546hg36g3";
             $saltPassword = $password.$salt;
             $info_user = $stmt->fetch();
@@ -40,7 +41,9 @@ class Usager extends CRUD {
         }
     }
 
-    //Vérification si le nom d'utilisateur est déjà pris
+    /**
+     * Vérification si le nom d'utilisateur est déjà pris
+     */
     public function checkUsername($username){
         $sql = "SELECT * FROM $this->table WHERE username = ?";
         $stmt = $this->prepare($sql);

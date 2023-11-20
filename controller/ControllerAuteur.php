@@ -69,7 +69,7 @@ class ControllerAuteur extends Controller {
     }
 
     public function update(){
-        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à l'index si oui pour éviter une erreur php
+        //Verifie principalement si un refraichissement de page (En utilisent le url) à été éffectué et retourne à son index si oui pour éviter une erreur php
         if($_POST == null){
             RequirePage::url('auteur');
         }
@@ -93,6 +93,7 @@ class ControllerAuteur extends Controller {
             $auteur = new Auteur;
             $livre = new Livre;
             $foreignTable = "Auteur_id";
+            //Vérification de si il y a un livre à son nom
             $checkForeignKey = $livre->checkForeignKey($_POST["id"], $foreignTable);
             if ($checkForeignKey == "valid") {
                 $destroy = $auteur->delete($_POST["id"]);
