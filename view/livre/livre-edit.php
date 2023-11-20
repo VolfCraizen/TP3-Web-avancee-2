@@ -1,6 +1,7 @@
 {{include('header.php', {title: 'Éditeur edit'})}}
         <div class="container_form">
             <form class="champ_formulaire" action="{{path}}livre/update" method="post">
+                <span class="danger">{{ errors | raw}}</span>
                 <input type="hidden" name="id" value="{{ livres.id }}">
 
                 <label for="titre">{{lang.titre}}</label>
